@@ -1,0 +1,8 @@
+setup:
+  config:
+    APP_SETTINGS:
+build:
+  docker:
+    web: Dockerfile
+run:
+  web: make run_server

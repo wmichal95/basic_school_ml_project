@@ -1,0 +1,60 @@
+openapi: "3.0.0"
+
+info:
+  title: Project API
+  version: "1.0"
+servers:
+  - url: /
+
+paths:
+  /healthcheck:
+    get:
+      summary: Check server status
+      operationId: lib.api.view_healthcheck.get
+      responses:
+        '200':
+          description: Status ok
+  /wine_predict:
+    put:
+      summary: Predict red wine quality based on ML model
+      operationId: lib.api.view_red_wine.put
+      requestBody:
+        description: red wine attributes
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fixed_acidity:
+                  type: number
+                volatile_acidity:
+                  type: number
+                citric_acid:
+                  type: number
+                residual_sugar:
+                  type: number
+                chlorides:
+                  type: number
+                free_sulfur_dioxide:
+                  type: number
+                total_sulfur_dioxide:
+                  type: number
+                density:
+                  type: number
+                pH:
+                  type: number
+                sulphates:
+                  type: number
+                alcohol:
+                  type: number
+      responses:
+        '200':
+          description: Predicted quality
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  quality:
+                    type: integer

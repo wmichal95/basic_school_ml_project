@@ -1,0 +1,7 @@
+version: "1.0"
+
+services:
+  basic_school_ml_project:
+    build: .
+    ports:
+      - "8000:5000"
