@@ -1,0 +1,27 @@
+name: Testing workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # Label of the container job
+  container-job:
+    # Containers must run in Linux based operating systems
+    runs-on: ubuntu-latest
+
+    steps:
+      # Downloads a copy of the code in your repository before running CI tests
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Build app image
+        run: docker compose build basic_school_ml_project
+
+      - name: Run static code analysis
+        run: make docker_pylint
+
+      - name: Run unittests
+        run: make docker_unittest
